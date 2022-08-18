@@ -5,18 +5,12 @@ using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.SlashCommands;
 using DSharpPlus.SlashCommands.EventArgs;
+using PromisedLandDSPBot.Handlers;
 
 namespace PromisedLandDSPBot;
 
 public class Events
 {
-    internal static Task ClientOnModalSubmitted(DiscordClient sender, ModalSubmitEventArgs e)
-    {
-        // Check modal id - if "suggestion-XXXX", delegate to a handler.
-        //throw new NotImplementedException();
-        return null;
-    }
-
     internal static async Task CommandsOnCommandErrored(CommandsNextExtension sender, CommandErrorEventArgs e)
     {
         Console.WriteLine($"\nNormal Command Error: \n{e.Exception.ToString()}\n\n and {e.Context.Command} was the culprit.");
@@ -52,8 +46,7 @@ public class Events
                 break;
             case InvalidOperationException:
                 await dc.SendMessageAsync(
-                    $"$Hi {m.Username}, you attempted to perform an invalid command. This may be because the"+
-                    " command is not fully implemented. Please contact a bot administrator.");
+                    $"{m.Mention} the command you entered was invalid");
                 break;
             default:
                 await dc.SendMessageAsync(
@@ -64,9 +57,23 @@ public class Events
     
     internal static Task GuildDiscovered(DiscordClient sender, GuildCreateEventArgs e)
     {
+        //sets the bots current nickname to that of the applications name whenever a new guild is loaded (such as on-join or application restart)
+        
+        /*
+        e.Guild.GetMemberAsync(sender.CurrentUser.Id).Result
+            .ModifyAsync(model => model.Nickname = sender.CurrentApplication.Name);
+        */
+        
+        //checks if the guild is registered in config.json and notifies the user.
         Console.WriteLine(Config.Whitelist.Get().Result.Contains(e.Guild.Id)
             ? $"[ENFORCER] {e.Guild.Name} [{e.Guild.Id}] [SUCCESS]"
             : $"[ENFORCER] {e.Guild.Name} [{e.Guild.Id}] [FAILED]");
+        return Task.CompletedTask;
+    }
+
+    public static Task ModalSubmitted(DiscordClient sender, ModalSubmitEventArgs e)
+    {
+        Modal.Handle(sender, e);
         return Task.CompletedTask;
     }
 }

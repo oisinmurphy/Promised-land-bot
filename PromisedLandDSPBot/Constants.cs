@@ -8,5 +8,5 @@ public class Constants
     public const string Repository = "https://github.com/oisinmurphy/Promised-land-bot";
     public static readonly string[] Developers = new []{"@JerryPlayz101#3209", "@The Redneck Agenda#6754", "@Brán(raven)#5895"};
 
-    public const string Version = "Indev Build 22, Electric Boogaloo";
+    public const string Version = "Indev Build 23, Electric Boogaloo";
 }

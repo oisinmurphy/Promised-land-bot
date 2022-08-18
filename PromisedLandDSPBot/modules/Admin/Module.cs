@@ -18,6 +18,21 @@ public class Module
     [SlashCommandGroup("sudo", "Methods to assist server moderators."), RequireUserPermissions(Permissions.Administrator), RequireGuild()]
     public class Slash : ApplicationCommandModule
     {
+        [SlashCommand("say", "repeats the provided phrase")]
+        [RequireGuild]
+        [RequirePermissions(Permissions.Administrator)]
+        public async Task Say(InteractionContext ctx,
+            [Option("message", "the message you would like the bot to repeat")] string message)
+        {
+            if (ctx.Client.CurrentApplication.Owners.Any(x => x.Id == ctx.Member.Id) || ctx.Client.CurrentApplication.Team != null && ctx.Client.CurrentApplication.Team.Members.Any(x => x.User.Id == ctx.Member.Id))
+                await ctx.Channel.SendMessageAsync(message);
+            else
+                await ctx.CreateResponseAsync(
+                    "sorry, you need to be the bot owner or registered on the bots team in the discord developer portal to use this command.");
+            await ctx.CreateResponseAsync("message sent!");
+
+        }
+        
         [SlashCommand("ban", "bans a specified user")]
         [RequireGuild] [RequirePermissions(Permissions.BanMembers)]
         public async Task Ban(InteractionContext ctx, 

@@ -9,7 +9,7 @@ namespace PromisedLandDSPBot.Modules.Tickets;
 public class Module
 {
     //slash command implementations
-    [SlashCommandGroup("ticket", "ticket tool functionality group."), RequireGuild()]
+    [SlashCommandGroup("ticket", "commands related to the creation and management of tickets"), RequireGuild()]
     public class Slash : ApplicationCommandModule
     {
         [SlashCommand("create", "Made to test how modals work in this framework.")]
@@ -44,11 +44,5 @@ public class Module
 
             await ctx.CreateResponseAsync(InteractionResponseType.Modal, response);
         }
-    }
-
-    //legacy command implementations
-    [Group("ticket")]
-    public class Base : BaseCommandModule
-    {
     }
 }

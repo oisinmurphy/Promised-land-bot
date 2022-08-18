@@ -10,12 +10,6 @@ public class Module
     [SlashCommandGroup("reactionrole", "For making, editing and deleting reaction role structures."), RequireGuild()]
     public class Slash : ApplicationCommandModule
     {
-    }
-
-    //legacy command implementations
-    [Group("reactionrole")]
-    public class Base : BaseCommandModule
-    {
-
+        
     }
 }

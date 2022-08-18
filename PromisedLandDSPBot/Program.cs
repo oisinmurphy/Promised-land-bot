@@ -62,6 +62,7 @@ namespace PromisedLandDSPBot // Note: actual namespace depends on the project na
 
             //_client.MessageCreated += OnMessage;
             _client.GuildAvailable += Events.GuildDiscovered;
+            _client.ModalSubmitted += Events.ModalSubmitted;
             
             // add custom handlers handlers - for base command handlers, if the group is empty, comment it out. :thanks: 
             
@@ -85,10 +86,6 @@ namespace PromisedLandDSPBot // Note: actual namespace depends on the project na
             slash.SlashCommandErrored += Events.SlashOnSlashCommandErrored;
             
             //Log(Logger.Type.Debug, "Registered Slash Commands");
-            
-            
-            // hook modal submitted stuffs
-            _client.ModalSubmitted += Events.ClientOnModalSubmitted;
 
             Console.WriteLine("Modules added successfully!");
             

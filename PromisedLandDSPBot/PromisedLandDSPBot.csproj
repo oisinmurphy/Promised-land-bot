@@ -15,14 +15,11 @@
       <PackageReference Include="LiteDB" Version="5.0.12" />
       <PackageReference Include="LiteDB.Async" Version="0.1.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="OpenAI.Net" Version="1.0.2" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Remove="Modules\SlashCommandModule1.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Modules\Language" />
     </ItemGroup>
 
 </Project>

@@ -83,6 +83,7 @@ namespace PromisedLandDSPBot // Note: actual namespace depends on the project na
             slash.RegisterCommands<Modules.Reactions.Module.Slash>();
             slash.RegisterCommands<Modules.Tickets.Module.Slash>();
             slash.RegisterCommands<Modules.Triggers.Module.Slash>();
+            slash.RegisterCommands<Modules.Language.Module.Slash>();
             slash.SlashCommandErrored += Events.SlashOnSlashCommandErrored;
             
             //Log(Logger.Type.Debug, "Registered Slash Commands");

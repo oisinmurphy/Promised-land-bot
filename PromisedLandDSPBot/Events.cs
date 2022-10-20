@@ -66,8 +66,8 @@ public class Events
         
         //checks if the guild is registered in config.json and notifies the user.
         Console.WriteLine(Config.Whitelist.Get().Result.Contains(e.Guild.Id)
-            ? $"[ENFORCER] {e.Guild.Name} [{e.Guild.Id}] [SUCCESS]"
-            : $"[ENFORCER] {e.Guild.Name} [{e.Guild.Id}] [FAILED]");
+            ? $"[SRVCHK] {e.Guild.Name} [{e.Guild.Id}] [WHITELISTED]"
+            : $"[SRVCHK] {e.Guild.Name} [{e.Guild.Id}] [UNREGISTERED]");
         return Task.CompletedTask;
     }
 
